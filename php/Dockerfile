@@ -18,6 +18,8 @@ RUN apt-get update && \
 RUN /usr/sbin/php5enmod mcrypt
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf && \
     sed -i "s/variables_order.*/variables_order = \"EGPCS\"/g" /etc/php5/apache2/php.ini
+# Update Composer
+RUN /usr/local/bin/composer self-update
 
 ENV ALLOW_OVERRIDE **False**
 

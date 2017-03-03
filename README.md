@@ -13,6 +13,6 @@ Environnement Docker pour découvrir RabbitMQ
 - Enregistrez puis redémarrez la VM
 - Se connecter au conteneur PHP et lancer le composer :
 <ul>
-	<li><code>docker exec -ti <i>container_name</i> bash</code></li>
+	<li><code>docker exec -ti <i>container_name</i> /bin/bash</code></li>
 	<li><code>composer install</code></li>
 </ul>
