@@ -1,0 +1,32 @@
+version: '2'
+services:
+    php:
+        image: tutum/apache-php:latest
+        links:
+            - rabbit1:rabbit1
+        ports:
+            - 80:80
+        volumes_from:
+            - app
+        container_name: container_php
+    rabbit1:
+        image: "rabbitmq:3-management"
+        hostname: "rabbit1"
+        environment:
+            RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
+            RABBITMQ_DEFAULT_USER: "rabbitmq"
+            RABBITMQ_DEFAULT_PASS: "rabbitmq"
+            RABBITMQ_DEFAULT_VHOST: "/"
+        ports:
+            - "15672:15672"
+            - "5672:5672"
+        labels:
+            NAME: "rabbitmq1"
+        volumes:
+            - ./data/rabbitmq:/var/lib/rabbitmq
+        container_name: container_rabbitmq
+    app:
+        image: php:7.0-fpm
+        volumes:
+            - /home/docker/app:/var/www/html
+        command: "true"
